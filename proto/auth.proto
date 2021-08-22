@@ -1,0 +1,30 @@
+syntax = "proto3";
+option csharp_namespace = "Hospital_System";
+package client;
+service Account {
+    rpc signIn (UserInfo) returns (UserReply);
+    rpc register(UserInfo) returns (UserReply);
+}
+message UserInfo {
+    string username = 1;
+    string password = 2;
+    string token = 3;
+    int32 roleId = 4;
+    string idPerson = 5;
+    string newPassword = 6;
+    string tokenNoti = 7;
+}
+message Response {
+   ResponseState state = 1;
+   string message = 2;
+   bytes file = 3;
+}
+message UserReply {
+   Response response = 1;
+   UserInfo info = 2;
+}
+
+enum ResponseState {
+  SUCCESS = 0;
+  FAIL = 1;
+}
